@@ -54,15 +54,28 @@
   document.getElementById('code').textContent = code || '------';
   var opened = false;
   document.addEventListener('visibilitychange', function(){ if (document.hidden) opened = true; });
+  // Chrome blocks raw custom-scheme JS navigation; the Android intent:// form
+  // is the sanctioned path (scheme + package + explicit browser fallback).
+  if (new URLSearchParams(location.search).get('fb') === '1') {
+    document.getElementById('fb').style.display = 'block';
+  }
   document.getElementById('go').addEventListener('click', function(){
     if (!code) return;
     var token = 'LR-JOIN:' + code;
     var done = function(){
       document.getElementById('copied').textContent = 'Code copied - opening the game...';
-      location.href = 'ludoroyale://join/' + code;
-      setTimeout(function(){
-        if (!opened && !document.hidden) document.getElementById('fb').style.display = 'block';
-      }, 1800);
+      var isAndroid = /android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        var fallback = location.origin + location.pathname + '?join=' + code + '&fb=1';
+        location.href = 'intent://join/' + code +
+          '#Intent;scheme=ludoroyale;package=com.factory.ludoroyale;' +
+          'S.browser_fallback_url=' + encodeURIComponent(fallback) + ';end';
+      } else {
+        location.href = 'ludoroyale://join/' + code;
+        setTimeout(function(){
+          if (!opened && !document.hidden) document.getElementById('fb').style.display = 'block';
+        }, 1800);
+      }
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(token).then(done, done);
