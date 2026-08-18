@@ -8,9 +8,9 @@
 <meta name="description" content="Ludo Royale is a fast, modern take on the classic Ludo board game: play online with friends, unleash special cards, team up 2v2, or battle smart AI. Free on Android.">
 <meta property="og:title" content="Ludo Royale — Online Ludo with Special Cards">
 <meta property="og:description" content="Play Ludo online with friends: private rooms, special cards, Team Up 2v2, and smart AI opponents.">
-<meta property="og:image" content="https://master-pk.github.io/ludo-royale-web/index.icon.png">
+<meta property="og:image" content="https://master-pk.github.io/ludo-royale-web/icon-1024.png">
 <meta property="og:url" content="https://master-pk.github.io/ludo-royale-web/">
-<link rel="icon" href="index.apple-touch-icon.png">
+<link rel="icon" href="icon-512.png">
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png">
 <style>
   * { box-sizing:border-box; }
@@ -24,13 +24,8 @@
   h1 { font-size:clamp(30px,6vw,44px); margin:18px 0 6px; letter-spacing:.01em; }
   .tagline { font-size:clamp(16px,3vw,19px); color:#4b5563; margin:0 auto; max-width:520px; line-height:1.5; }
   .cta { margin:26px 0 8px; }
-  .badge { display:inline-flex; align-items:center; gap:10px; background:#111; color:#fff;
-           border-radius:12px; padding:11px 20px; }
-  .badge .tri { width:0; height:0; border-top:11px solid transparent; border-bottom:11px solid transparent;
-                border-left:18px solid #34d399; }
-  .badge div { text-align:left; line-height:1.15; }
-  .badge small { font-size:10px; color:#bbb; display:block; letter-spacing:.08em; }
-  .badge b { font-size:15px; }
+  .stores { display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; }
+  .stores img { height:52px; opacity:.85; }
   .soon { color:#6b7280; font-size:13px; margin-top:8px; }
 
   .hero { display:flex; flex-wrap:wrap; gap:34px; align-items:center; justify-content:center; padding:34px 0 10px; }
@@ -67,23 +62,23 @@
   .copied { color:#2E7D32; font-size:13px; height:18px; margin-top:8px; }
   .fallback { display:none; margin-top:26px; border-top:1px solid #e5e7eb; padding-top:20px; }
   .fallback p { color:#6b7280; font-size:14px; margin:0 0 12px; }
-  .fallback .badge { opacity:.55; }
+  .fallback .stores img { height:44px; opacity:.55; }
 </style>
 </head>
 <body>
 
 <div class="wrap" id="landing">
   <header>
-    <img class="appicon" src="index.apple-touch-icon.png" alt="Ludo Royale app icon">
+    <img class="appicon" src="icon-512.png" alt="Ludo Royale app icon">
     <h1>&#128081; Ludo Royale</h1>
     <p class="tagline">The classic Ludo board game, reimagined — private online rooms with friends,
        game-changing special cards, and a carnival of color.</p>
     <div class="cta">
-      <span class="badge">
-        <span class="tri"></span>
-        <div><small>GET IT ON</small><b>Google Play</b></div>
-      </span>
-      <div class="soon">Coming soon — currently in closed testing</div>
+      <div class="stores">
+        <img src="badge-play.svg" alt="Get it on Google Play">
+        <img src="badge-appstore.svg" alt="Download on the App Store">
+      </div>
+      <div class="soon">Coming soon — currently in closed testing on both stores</div>
     </div>
   </header>
 
@@ -133,10 +128,10 @@
   <div class="copied" id="copied"></div>
   <div class="fallback" id="fb">
     <p>Don't have Ludo Royale yet?</p>
-    <span class="badge">
-      <span class="tri"></span>
-      <div><small>GET IT ON</small><b>Google Play</b></div>
-    </span>
+    <div class="stores">
+      <img src="badge-play.svg" alt="Get it on Google Play">
+      <img src="badge-appstore.svg" alt="Download on the App Store">
+    </div>
     <div class="soon">Coming soon</div>
   </div>
 </div>
