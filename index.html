@@ -3,15 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ludo Royale - Join Room</title>
+<title>Ludo Royale — Online Ludo with Special Cards</title>
+<meta name="description" content="Ludo Royale is a fast, modern take on the classic Ludo board game: play online with friends, unleash special cards, team up 2v2, or battle smart AI. Free on Android.">
+<meta property="og:title" content="Ludo Royale — Online Ludo with Special Cards">
+<meta property="og:description" content="Play Ludo online with friends: private rooms, special cards, Team Up 2v2, and smart AI opponents.">
+<meta property="og:image" content="https://master-pk.github.io/ludo-royale-web/index.icon.png">
+<meta property="og:url" content="https://master-pk.github.io/ludo-royale-web/">
+<link rel="icon" href="index.apple-touch-icon.png">
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png">
 <style>
-  body { margin:0; font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
-         background:linear-gradient(180deg,#C3E7F8 0%,#F7DEE2 100%);
-         min-height:100vh; display:flex; align-items:center; justify-content:center; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,'Segoe UI',Roboto,sans-serif; color:#2F3640;
+         background:linear-gradient(180deg,#C3E7F8 0%,#F7DEE2 100%); min-height:100vh; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 22px; }
+
+  /* ---------- landing ---------- */
+  header { padding:56px 0 8px; text-align:center; }
+  .appicon { width:108px; height:108px; border-radius:26px; box-shadow:0 10px 30px rgba(47,54,64,.25); }
+  h1 { font-size:clamp(30px,6vw,44px); margin:18px 0 6px; letter-spacing:.01em; }
+  .tagline { font-size:clamp(16px,3vw,19px); color:#4b5563; margin:0 auto; max-width:520px; line-height:1.5; }
+  .cta { margin:26px 0 8px; }
+  .badge { display:inline-flex; align-items:center; gap:10px; background:#111; color:#fff;
+           border-radius:12px; padding:11px 20px; }
+  .badge .tri { width:0; height:0; border-top:11px solid transparent; border-bottom:11px solid transparent;
+                border-left:18px solid #34d399; }
+  .badge div { text-align:left; line-height:1.15; }
+  .badge small { font-size:10px; color:#bbb; display:block; letter-spacing:.08em; }
+  .badge b { font-size:15px; }
+  .soon { color:#6b7280; font-size:13px; margin-top:8px; }
+
+  .hero { display:flex; flex-wrap:wrap; gap:34px; align-items:center; justify-content:center; padding:34px 0 10px; }
+  .shot { width:min(280px,72vw); border-radius:22px; box-shadow:0 18px 50px rgba(47,54,64,.28); }
+  .features { flex:1 1 320px; max-width:440px; display:flex; flex-direction:column; gap:14px; }
+  .feat { background:rgba(255,255,255,.85); border-radius:18px; padding:16px 18px; display:flex; gap:14px;
+          align-items:flex-start; box-shadow:0 6px 20px rgba(47,54,64,.10); }
+  .feat .ico { font-size:26px; line-height:1.2; }
+  .feat b { display:block; font-size:16px; margin-bottom:2px; }
+  .feat p { margin:0; color:#4b5563; font-size:14px; line-height:1.45; }
+
+  .about { background:rgba(255,255,255,.7); border-radius:22px; padding:26px 26px; margin:34px 0;
+           box-shadow:0 6px 20px rgba(47,54,64,.08); }
+  .about h2 { margin:0 0 10px; font-size:22px; }
+  .about p { margin:0 0 10px; color:#374151; line-height:1.65; font-size:15px; }
+
+  footer { text-align:center; padding:26px 0 40px; color:#6b7280; font-size:13px; line-height:2; }
+  footer a { color:#2563eb; text-decoration:none; margin:0 8px; }
+
+  /* ---------- join card (invite links only) ---------- */
+  .joinveil { display:none; position:fixed; inset:0; background:linear-gradient(180deg,#C3E7F8 0%,#F7DEE2 100%);
+              align-items:center; justify-content:center; z-index:10; }
   .card { background:rgba(255,255,255,.92); border-radius:28px; padding:38px 30px;
           max-width:340px; width:88%; text-align:center;
           box-shadow:0 14px 44px rgba(47,54,64,.18); }
-  h1 { color:#2F3640; font-size:26px; margin:0 0 4px; }
+  .card h1 { font-size:26px; margin:0 0 4px; }
   .crown { font-size:44px; }
   .code-label { color:#6b7280; font-size:13px; letter-spacing:.12em; margin-top:20px; }
   .code { font-size:38px; font-weight:800; letter-spacing:.24em; color:#2F3640; margin:4px 0 22px; }
@@ -22,17 +66,63 @@
   .copied { color:#2E7D32; font-size:13px; height:18px; margin-top:8px; }
   .fallback { display:none; margin-top:26px; border-top:1px solid #e5e7eb; padding-top:20px; }
   .fallback p { color:#6b7280; font-size:14px; margin:0 0 12px; }
-  .badge { display:inline-flex; align-items:center; gap:10px; background:#111; color:#fff;
-           border-radius:12px; padding:10px 18px; opacity:.55; }
-  .badge .tri { width:0; height:0; border-top:11px solid transparent; border-bottom:11px solid transparent;
-                border-left:18px solid #34d399; }
-  .badge div { text-align:left; line-height:1.15; }
-  .badge small { font-size:10px; color:#bbb; display:block; }
-  .badge b { font-size:15px; }
-  .soon { color:#9ca3af; font-size:12px; margin-top:8px; }
+  .fallback .badge { opacity:.55; }
 </style>
 </head>
 <body>
+
+<div class="wrap" id="landing">
+  <header>
+    <img class="appicon" src="index.apple-touch-icon.png" alt="Ludo Royale app icon">
+    <h1>&#128081; Ludo Royale</h1>
+    <p class="tagline">The classic Ludo board game, reimagined — private online rooms with friends,
+       game-changing special cards, and a carnival of color.</p>
+    <div class="cta">
+      <span class="badge">
+        <span class="tri"></span>
+        <div><small>GET IT ON</small><b>Google Play</b></div>
+      </span>
+      <div class="soon">Coming soon — currently in closed testing</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img class="shot" src="index.png" alt="Ludo Royale key art — board with four royal pieces">
+    <div class="features">
+      <div class="feat"><span class="ico">&#127760;</span>
+        <div><b>Play online with friends</b>
+        <p>Create a private room, share the invite link, and play 2–4 player matches in real time.</p></div></div>
+      <div class="feat"><span class="ico">&#127183;</span>
+        <div><b>Special cards</b>
+        <p>Shields, swaps, and power moves that flip a match on its head — earn them as you play.</p></div></div>
+      <div class="feat"><span class="ico">&#129309;</span>
+        <div><b>Team Up 2v2</b>
+        <p>Pair up and race as a team — win together, or fall together.</p></div></div>
+      <div class="feat"><span class="ico">&#129302;</span>
+        <div><b>Solo &amp; Pass-n-Play</b>
+        <p>Battle smart AI opponents offline, or hand the phone around for a couch match.</p></div></div>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>About the game</h2>
+    <p>Ludo Royale takes the board game everyone grew up with and gives it modern life:
+       quick matches, expressive animations, a royal carnival look, and mechanics that reward
+       bold play — destroy rival kings, revive your own, and time your special cards for the
+       perfect comeback.</p>
+    <p>Got an invite from a friend? Just open their link — it shows the room code and takes
+       you straight into the match.</p>
+  </section>
+
+  <footer>
+    <a href="privacy.html">Privacy Policy</a> &middot;
+    <a href="mailto:prakash.mishra005@gmail.com">Contact</a><br>
+    &copy; 2026 Ludo Royale
+  </footer>
+</div>
+
+<!-- Invite flow: shown only when the URL carries ?join=CODE -->
+<div class="joinveil" id="joinveil">
 <div class="card">
   <div class="crown">&#128081;</div>
   <h1>Ludo Royale</h1>
@@ -49,9 +139,15 @@
     <div class="soon">Coming soon</div>
   </div>
 </div>
+</div>
+
 <script>
   var code = (new URLSearchParams(location.search).get('join') || '').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
-  document.getElementById('code').textContent = code || '------';
+  if (code) {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('joinveil').style.display = 'flex';
+    document.getElementById('code').textContent = code;
+  }
   var opened = false;
   document.addEventListener('visibilitychange', function(){ if (document.hidden) opened = true; });
   // Chrome blocks raw custom-scheme JS navigation; the Android intent:// form
