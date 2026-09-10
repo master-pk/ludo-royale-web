@@ -30,9 +30,11 @@ data, and there are no cash prizes of any kind.</p>
   <li><b>Player ID</b> — the game signs you in anonymously (a random
   identifier issued per install) so online rooms can tell players apart.</li>
   <li><b>Optional sign-in with Google or Apple</b> — if you choose to sign in,
-  we store the identifier and email address that Google or Apple provides to
-  our authentication service (Firebase Authentication). It is used only to
-  restore your progress on a new device and is never shown to other players.
+  we store the identifier and email address that Google or Apple provides, in
+  our authentication service (Firebase Authentication) and on your player
+  profile. It is used only to restore your progress on a new device and to
+  match account requests such as deletion; it is never shown to other players
+  and never used for marketing.
   No password is stored by us.</li>
   <li><b>Gameplay data</b> — online matches store the moves of the match
   (dice rolls, piece moves, cards played, results) on our game server so all
