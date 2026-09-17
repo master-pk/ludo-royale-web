@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["3439PUH83X.com.factory.ludoroyale"],
+        "paths": ["/join.html", "/join.html?*"],
+        "components": [
+          { "/": "/join.html", "comment": "invite links only — the home, privacy and delete-account pages open in Safari" }
+        ]
+      }
+    ]
+  }
+}
