@@ -1,0 +1,53 @@
+# Ludo Royale — website
+
+Static site for Ludo Royale: Battle of Kings. Hosted on Cloudflare as Worker
+static assets at **https://ludoroyale.everease.org** (domain `everease.org`,
+Cloudflare-registered). The old GitHub Pages address,
+`master-pk.github.io/ludo-royale-web`, keeps serving the same files until every
+store listing and shipped build points at the new host.
+
+## Pages
+
+| File | Purpose | Who links to it |
+|---|---|---|
+| `index.html` | landing page, store badges | store listings ("Website") |
+| `join.html` | invite landing (`?join=CODE`); the ONLY page the app claims as a deep link | every share link the game sends |
+| `privacy.html` | privacy policy | both stores, in-app settings, store footer |
+| `delete-account.html` | account deletion instructions | Play data-safety form |
+
+Files the platforms read (must be served from this host, at the root):
+
+- `.well-known/apple-app-site-association` — iOS universal links; claims `/join.html` only.
+- `.well-known/assetlinks.json` — Android App Links; package + both signing fingerprints.
+- `app-ads.txt` — AdMob authorised seller line. Google may also look at the root domain (`everease.org/app-ads.txt`), so keep a copy there.
+- `_headers` — forces `Content-Type: application/json` on the two `.well-known` files (Apple rejects octet-stream).
+
+## Hosting / deploy
+
+- `wrangler.jsonc` is the whole config: `assets.directory = "./"`, no build step,
+  `html_handling: "none"` so `/join.html` is served verbatim (it is the exact
+  path the app claims and every invite carries — never let it redirect to `/join`).
+- `.assetsignore` keeps `.git`, `.github` and this README out of the upload.
+- Cloudflare's Git integration deploys `main` on push. Manual deploy:
+  `npx wrangler deploy` (after `npx wrangler login`, or with
+  `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` in the environment).
+- Custom domain: project → Settings → Domains & Routes → `ludoroyale.everease.org`.
+  Cloudflare manages the DNS record and the certificate.
+
+## Secrets
+
+Never commit tokens. Cloudflare credentials live outside the repo, alongside the
+store keys: `~/.factory/cloudflare.env` (`CLOUDFLARE_API_TOKEN`,
+`CLOUDFLARE_ACCOUNT_ID`) or the `wrangler login` credential in `~/.wrangler`.
+
+## Moving the app to this host (checklist)
+
+The host is named in the game and the server; changing it needs a build.
+Claim BOTH hosts during the transition so old invite links keep working.
+
+1. Android manifest: add an App Link `<data>` for `ludoroyale.everease.org` path `/join.html`.
+2. iOS entitlements: add `applinks:ludoroyale.everease.org`.
+3. Client `NetConfig.WEB_GAME_URL` and server `LINK_DEFAULTS.web_game_url` → `https://ludoroyale.everease.org/join.html`; live override `/config/links/web_game_url` (no build).
+4. In-app privacy links (settings, store footer) → `https://ludoroyale.everease.org/privacy.html`.
+5. Store consoles: Play contact website + privacy URL; App Store support/marketing/privacy URLs; Play data-safety deletion URL.
+6. App Review notes text mentions the delete-account URL — update.
