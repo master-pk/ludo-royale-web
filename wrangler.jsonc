@@ -6,7 +6,7 @@
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./",
-    "html_handling": "auto-trailing-slash",
+    "html_handling": "none",   // keep /join.html as-is: it is the exact path the app claims and every invite link carries
     "not_found_handling": "404-page"
   }
 }
