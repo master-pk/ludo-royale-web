@@ -12,10 +12,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="9NP0AkoXeVj2KgWPvNsxfZmz2Q2xTTFruxJoQ57xu-c" />
-<title>Ludo Royale — Online Ludo with Special Cards</title>
-<meta name="description" content="Ludo Royale is a fast, modern take on the classic Ludo board game: play online with friends, unleash special cards, team up 2v2, or battle smart AI. Free on Android and iPhone.">
-<meta property="og:title" content="Ludo Royale — Online Ludo with Special Cards">
-<meta property="og:description" content="Play Ludo online with friends: private rooms, special cards, Team Up 2v2, and smart AI opponents.">
+<title>Ludo Royale: Battle of Kings — Ludo with power cards, online</title>
+<meta name="description" content="Ludo where your four pieces are a King, a Pawn, a Knight and a Rook, and each one fights differently. Capture to earn power cards, crown your Pawn as the Queen, and play online in seconds, with friends, 2v2, or offline. Free on Android and iPhone.">
+<meta property="og:title" content="Ludo Royale: Battle of Kings">
+<meta property="og:description" content="A King, a Pawn, a Knight and a Rook that each fight differently, power cards earned by capturing, a Queen to crown. Ludo as a card battle, online in seconds.">
 <meta property="og:image" content="https://ludoroyale.everease.org/icon-1024.png">
 <meta property="og:url" content="https://ludoroyale.everease.org/">
 <link rel="icon" href="icon-512.png">
@@ -30,11 +30,14 @@
   header { padding:56px 0 8px; text-align:center; }
   .appicon { width:108px; height:108px; border-radius:26px; box-shadow:0 10px 30px rgba(47,54,64,.25); }
   h1 { font-size:clamp(30px,6vw,44px); margin:18px 0 6px; letter-spacing:.01em; }
-  .tagline { font-size:clamp(16px,3vw,19px); color:#4b5563; margin:0 auto; max-width:520px; line-height:1.5; }
+  .tagline { font-size:clamp(16px,3vw,19px); color:#4b5563; margin:0 auto; max-width:560px; line-height:1.5; }
   .cta { margin:26px 0 8px; }
   .stores { display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; }
-  .stores img { height:52px; opacity:.85; }
-  .soon { color:#6b7280; font-size:13px; margin-top:8px; }
+  .stores img { height:52px; }
+  .free { color:#6b7280; font-size:13px; margin-top:10px; }
+
+  h2 { font-size:clamp(22px,4vw,28px); margin:0 0 6px; text-align:center; }
+  .lead { text-align:center; color:#4b5563; margin:0 auto 22px; max-width:560px; line-height:1.5; font-size:15px; }
 
   .hero { display:flex; flex-wrap:wrap; gap:34px; align-items:center; justify-content:center; padding:34px 0 10px; }
   .shot { width:min(280px,72vw); border-radius:22px; box-shadow:0 18px 50px rgba(47,54,64,.28); }
@@ -45,9 +48,26 @@
   .feat b { display:block; font-size:16px; margin-bottom:2px; }
   .feat p { margin:0; color:#4b5563; font-size:14px; line-height:1.45; }
 
+  section { padding:34px 0 0; }
+  .strip { display:flex; gap:14px; overflow-x:auto; padding:6px 2px 18px; scroll-snap-type:x mandatory;
+           -webkit-overflow-scrolling:touch; }
+  .strip img { flex:0 0 auto; width:216px; height:384px; border-radius:18px; scroll-snap-align:start;
+               box-shadow:0 10px 30px rgba(47,54,64,.22); }
+  @media (min-width:600px) { .strip img { width:238px; height:423px; } }
+
+  .modes { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+  .mode { background:rgba(255,255,255,.78); border-radius:18px; padding:16px 18px;
+          box-shadow:0 6px 20px rgba(47,54,64,.08); }
+  .mode b { display:block; font-size:15px; margin-bottom:4px; }
+  .mode p { margin:0; color:#4b5563; font-size:14px; line-height:1.45; }
+
+  .video { position:relative; width:100%; max-width:320px; margin:0 auto; aspect-ratio:9/16; border-radius:22px;
+           overflow:hidden; box-shadow:0 18px 50px rgba(47,54,64,.28); background:#000; }
+  .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
   .about { background:rgba(255,255,255,.7); border-radius:22px; padding:26px 26px; margin:34px 0;
            box-shadow:0 6px 20px rgba(47,54,64,.08); }
-  .about h2 { margin:0 0 10px; font-size:22px; }
+  .about h2 { text-align:left; font-size:22px; margin:0 0 10px; }
   .about p { margin:0 0 10px; color:#374151; line-height:1.65; font-size:15px; }
 
   footer { text-align:center; padding:26px 0 40px; color:#6b7280; font-size:13px; line-height:2; }
@@ -78,48 +98,94 @@
 <div class="wrap" id="landing">
   <header>
     <img class="appicon" src="icon-512.png" alt="Ludo Royale app icon">
-    <h1>&#128081; Ludo Royale</h1>
-    <p class="tagline">The classic Ludo board game, reimagined — online matchmaking, private rooms with friends,
-       game-changing special cards, and a carnival of color.</p>
+    <h1>&#128081; Ludo Royale: Battle of Kings</h1>
+    <p class="tagline">A King, a Pawn, a Knight and a Rook that each fight differently, power cards earned
+       by capturing, a Queen to crown. Ludo as a card battle, online in seconds.</p>
     <div class="cta">
       <div class="stores">
         <a href="https://play.google.com/store/apps/details?id=com.factory.ludoroyale"><img src="badge-play.svg" alt="Get it on Google Play"></a>
         <a href="https://apps.apple.com/app/id6798921153"><img src="badge-appstore.svg" alt="Download on the App Store"></a>
       </div>
+      <div class="free">Free to play &middot; 2 to 4 players &middot; no account needed to start</div>
     </div>
   </header>
 
   <section class="hero">
     <img class="shot" src="index.png" alt="Ludo Royale key art — board with four royal pieces">
     <div class="features">
-      <div class="feat"><span class="ico">&#127760;</span>
-        <div><b>Play online with friends</b>
-        <p>Jump into a match instantly, or create a private room and share the invite link — 2–4 players, real time.</p></div></div>
+      <div class="feat"><span class="ico">&#9822;</span>
+        <div><b>Every piece fights differently</b>
+        <p>The Rook wears armour and survives the first hit. The Knight strikes the tiles ahead of and behind
+           where it lands. The Pawn is your climber. The King is the only piece that can finish your race.</p></div></div>
       <div class="feat"><span class="ico">&#127183;</span>
-        <div><b>Special cards</b>
-        <p>Shields, swaps, and power moves that flip a match on its head — earn them as you play.</p></div></div>
-      <div class="feat"><span class="ico">&#129309;</span>
-        <div><b>Team Up 2v2</b>
-        <p>Pair up and race as a team — win together, or fall together.</p></div></div>
-      <div class="feat"><span class="ico">&#129302;</span>
-        <div><b>Solo &amp; Pass-n-Play</b>
-        <p>Battle smart AI opponents offline, or hand the phone around for a couch match.</p></div></div>
+        <div><b>Power cards</b>
+        <p>Every capture earns a card, and bigger victims pay rarer ones. Shield, Snipe, Teleport, Sabotage,
+           Royal Decoy and more. Hold two, play one per turn.</p></div></div>
+      <div class="feat"><span class="ico">&#128081;</span>
+        <div><b>Crown your Pawn</b>
+        <p>Walk a Pawn home while the throne sits empty and she becomes the Queen. Only one Queen exists in a
+           match. Take her with a Pawn and the crown passes to you.</p></div></div>
+      <div class="feat"><span class="ico">&#9818;</span>
+        <div><b>Destroy the King</b>
+        <p>Lose your King while your army is still on the board and you are out. Not behind, out. Every roll
+           carries that weight.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>See it on the board</h2>
+    <p class="lead">Swipe through the game as it plays.</p>
+    <div class="strip">
+      <img src="shots/1_armor.jpg" alt="Battle of Kings: every piece fights differently" loading="lazy">
+      <img src="shots/2_hand.jpg" alt="One card changes everything: power cards earned by capturing" loading="lazy">
+      <img src="shots/3_coronation.jpg" alt="Crown your Pawn: only one Queen per match" loading="lazy">
+      <img src="shots/4_elimination.jpg" alt="Destroy the King: lose your King, lose the match" loading="lazy">
+      <img src="shots/5_armor.jpg" alt="The Rook wears armour: the first hit only cracks it" loading="lazy">
+      <img src="shots/6_matchmaking.jpg" alt="Play online: real players in seconds" loading="lazy">
+      <img src="shots/7_lobby.jpg" alt="Play with friends: private rooms, share a link" loading="lazy">
+      <img src="shots/8_leaderboard.jpg" alt="Climb the leaderboard" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <h2>Play however you like</h2>
+    <p class="lead">Two to four players, on one phone or across the world.</p>
+    <div class="modes">
+      <div class="mode"><b>&#127760; Online in seconds</b><p>Quick Duel or Classic. Match with real players, 1v1 or four to a board.</p></div>
+      <div class="mode"><b>&#128279; Private rooms</b><p>Invite friends with a link. They tap it, the room opens, the seats fill.</p></div>
+      <div class="mode"><b>&#129309; Team Up 2v2</b><p>Pair up and defend each other. Win together or fall together.</p></div>
+      <div class="mode"><b>&#129302; Offline &amp; pass-n-play</b><p>Play the AI with no internet at all, or hand the phone around the couch.</p></div>
+      <div class="mode"><b>&#127942; A record worth keeping</b><p>XP and levels, 43 achievements, 42 avatars, and a leaderboard of your friends' wins.</p></div>
+      <div class="mode"><b>&#128172; Talk without typing</b><p>Quick emojis and phrases to cheer, taunt or apologise. No keyboard, no abuse.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Watch the trailer</h2>
+    <p class="lead">Thirty seconds of the board, the cards and the crown.</p>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/J-f6_4v7UoI?rel=0" title="Ludo Royale trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen loading="lazy"></iframe>
     </div>
   </section>
 
   <section class="about">
     <h2>About the game</h2>
-    <p>Ludo Royale takes the board game everyone grew up with and gives it modern life:
-       quick matches, expressive animations, a royal carnival look, and mechanics that reward
-       bold play — destroy rival kings, revive your own, and time your special cards for the
-       perfect comeback.</p>
-    <p>Got an invite from a friend? Just open their link — it shows the room code and takes
-       you straight into the match.</p>
+    <p>Ludo Royale keeps the board everyone grew up with and changes what stands on it. Your four pieces
+       are chess pieces with their own rules, captures pay out power cards, a brave Pawn can take the
+       crown, and losing your King ends your match on the spot. If you know Ludo, you already know half
+       the rules; a coached first game teaches the rest in about two minutes.</p>
+    <p>Got an invite from a friend? Open their link. It shows the room code and takes you straight into
+       the match.</p>
+    <p>No cash prizes. Coins are for play only and can never be withdrawn. Royal Club is an optional
+       monthly subscription that renews until cancelled in your store settings.</p>
   </section>
 
   <footer>
     <a href="privacy.html">Privacy Policy</a> &middot;
-    <a href="mailto:prakash.mishra005@gmail.com">Contact</a><br>
+    <a href="delete-account.html">Delete account</a> &middot;
+    <a href="mailto:everease.sup@gmail.com">Contact</a><br>
     &copy; 2026 Ludo Royale
   </footer>
 </div>
