@@ -4,8 +4,10 @@
   // the files as they are. _headers keeps the App Links files as JSON.
   "name": "ludo-royale-web",
   "compatibility_date": "2026-09-01",
+  "main": "worker.js",       // only handles /get (device-aware store redirect); everything else falls through to the assets
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
     "html_handling": "none",   // keep /join.html as-is: it is the exact path the app claims and every invite link carries
     "not_found_handling": "404-page"
   }

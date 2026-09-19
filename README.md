@@ -10,6 +10,7 @@ store listing and shipped build points at the new host.
 
 | File | Purpose | Who links to it |
 |---|---|---|
+| `/get` (worker.js, no file) | Device-aware store link: Android → Google Play, iPhone/iPad → App Store, else the home page | Anything the founder shares by hand — one link for both stores |
 | `index.html` | landing page, store badges | store listings ("Website") |
 | `join.html` | invite landing (`?join=CODE`); the ONLY page the app claims as a deep link | every share link the game sends |
 | `privacy.html` | privacy policy | both stores, in-app settings, store footer |
