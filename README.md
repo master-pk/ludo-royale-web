@@ -40,7 +40,11 @@ Never commit tokens. Cloudflare credentials live outside the repo, alongside the
 store keys: `~/.factory/cloudflare.env` (`CLOUDFLARE_API_TOKEN`,
 `CLOUDFLARE_ACCOUNT_ID`) or the `wrangler login` credential in `~/.wrangler`.
 
-## Moving the app to this host (checklist)
+## Moving the app to this host (checklist) — DONE 2026-09-19
+
+Every item below is complete: app builds from 1.0.96 claim both hosts, the
+server default and live override point here, and both store consoles carry
+the new URLs. The GitHub Pages copy only redirects now.
 
 The host is named in the game and the server; changing it needs a build.
 Claim BOTH hosts during the transition so old invite links keep working.
