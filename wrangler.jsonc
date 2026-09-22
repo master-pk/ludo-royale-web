@@ -5,6 +5,12 @@
   "name": "ludo-royale-web",
   "compatibility_date": "2026-09-01",
   "main": "worker.js",       // only handles /get (device-aware store redirect); everything else falls through to the assets
+  // every tap on a store link is counted by source + platform (a count, nothing personal).
+  // NEEDS a one-time enable in the dashboard (Workers & Pages > Analytics Engine) before the
+  // binding can deploy; until then it stays commented out and the worker skips counting.
+  // "analytics_engine_datasets": [{ "binding": "CLICKS", "dataset": "ludo_store_clicks" }],
+  // Apple campaign provider token (App Store Connect > App Analytics > Campaigns) — set with
+  //   npx wrangler secret put APPLE_PT      (never in this file)
   "assets": {
     "directory": "./",
     "binding": "ASSETS",

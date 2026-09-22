@@ -10,7 +10,7 @@ store listing and shipped build points at the new host.
 
 | File | Purpose | Who links to it |
 |---|---|---|
-| `/get` (worker.js, no file) | Device-aware store link: Android → Google Play, iPhone/iPad → App Store, else the home page | Anything the founder shares by hand — one link for both stores |
+| `/get`, `/ig`, `/yt`, `/rd`, `/fam`, `/get?s=<tag>` (worker.js, no file) | Store links that remember the source: Android → Google Play with a Play install referrer (`utm_source=<source>`, read by Firebase Analytics on first open — no app change); iPhone/iPad → App Store with Apple campaign parameters once `APPLE_PT` is set; desktop → the home page. `ig` instagram · `yt` youtube · `rd` reddit · `fam` friends and family · `get` direct · `get?s=whatsapp` any other lowercase tag | The founder, per channel. Share the SHORT form, e.g. `ludoroyale.everease.org/ig` |
 | `index.html` | landing page, store badges | store listings ("Website") |
 | `join.html` | invite landing (`?join=CODE`); the ONLY page the app claims as a deep link | every share link the game sends |
 | `privacy.html` | privacy policy | both stores, in-app settings, store footer |
@@ -56,3 +56,21 @@ Claim BOTH hosts during the transition so old invite links keep working.
 4. In-app privacy links (settings, store footer) → `https://ludoroyale.everease.org/privacy.html`.
 5. Store consoles: Play contact website + privacy URL; App Store support/marketing/privacy URLs; Play data-safety deletion URL.
 6. App Review notes text mentions the delete-account URL — update.
+
+## Source tracking — two switches still to flip (founder)
+
+1. **Click counting (Cloudflare):** enable Workers Analytics Engine once in the
+   dashboard (Workers & Pages → Analytics Engine → Enable), then uncomment the
+   `analytics_engine_datasets` line in `wrangler.jsonc` and deploy. From then on
+   every tap is counted by source + platform + country, nothing personal. Query
+   in the dashboard or with the SQL API (dataset `ludo_store_clicks`).
+2. **iOS attribution (Apple):** App Store Connect → App Analytics → Campaigns →
+   Generate campaign link; copy the `pt=` value and run
+   `npx wrangler secret put APPLE_PT`, paste it, deploy. iOS installs per source
+   then appear in App Store Connect's Campaigns report (never in Firebase — Apple
+   does not pass it through).
+
+Android needs neither: the install referrer flows through Google Play into
+Firebase Analytics on its own. Check with
+`python3 scripts/metrics_quick.py` in the game repo (acquisition source), or
+GA → Acquisition → first user source.
